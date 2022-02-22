@@ -5,7 +5,12 @@ from .models import Product
 from .Serializers import ProductSerialier
 
 # Create your views here.
-class ProductViewSet(APIView):
+class ProductReviewPage(APIView):
+    def get(self, request):
+        s = {'message':  'documentation'}
+        return Response(s)
+
+class ProductViewSetAPI(APIView):
     def get(self, request, format=None):
         all_products = Product.objects.all() #Getting all values
         serializers = ProductSerialier(all_products, many=True)
@@ -44,3 +49,5 @@ class ProductDescription(APIView): #handle entry-specif operations
         serializers = ProductSerialier(prod)
         prod.delete()
         return Response(serializers,status=204)
+
+        
